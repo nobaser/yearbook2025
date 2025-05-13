@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearbook 2025 | Memories That Last</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+        
+        .yearbook-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .yearbook-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .glow {
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px -5px #d946ef;
+            }
+            to {
+                box-shadow: 0 0 20px 5px #d946ef;
+            }
+        }
+        
+        .typing-effect::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-book-open text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">Yearbook 2025</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Gallery</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Classmates</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Events</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Memories</a>
+                    <button class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition duration-300">
+                        Sign In
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-3 px-2">
+            <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Gallery</a>
+            <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Classmates</a>
+            <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Events</a>
+            <a href="#" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Memories</a>
+            <button class="mt-2 ml-3 bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition duration-300">
+                Sign In
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="typing-effect" id="typing-text"></span>
+                </h1>
+                <p class="text-xl mb-8 opacity-90">Relive the moments, reconnect with friends, and celebrate the journey of 2025. Our interactive yearbook brings your memories to life.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg">
+                        Explore Yearbook
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition duration-300">
+                        Watch Video
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="relative w-full h-96 md:h-auto">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Graduation celebration" 
+                         class="absolute top-0 left-0 w-full h-full object-cover rounded-xl shadow-2xl border-8 border-white transform rotate-3">
+                    <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                         alt="Students together" 
+                         class="absolute top-10 left-10 w-3/4 h-3/4 object-cover rounded-xl shadow-2xl border-8 border-white transform -rotate-6 -translate-x-10 -translate-y-10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-bold text-indigo-600 mb-2" id="students-count">0</div>
+                    <div class="text-gray-600">Students</div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-bold text-purple-600 mb-2" id="photos-count">0</div>
+                    <div class="text-gray-600">Photos</div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-bold text-pink-600 mb-2" id="events-count">0</div>
+                    <div class="text-gray-600">Events</div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-bold text-blue-600 mb-2" id="messages-count">0</div>
+                    <div class="text-gray-600">Messages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Memories -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Featured Memories</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Relive the most unforgettable moments from our journey together in 2025</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Memory Card 1 -->
+                <div class="flip-card h-96">
+                    <div class="flip-card-inner h-full rounded-xl shadow-lg">
+                        <div class="flip-card-front h-full bg-white rounded-xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Graduation ceremony" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                                <h3 class="text-xl font-bold text-white">Graduation Day</h3>
+                                <p class="text-gray-200">May 25, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back h-full bg-indigo-600 text-white rounded-xl p-6 flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-4">Graduation Day</h3>
+                            <p class="mb-4">The day we officially became alumni. Tears, laughter, and unforgettable memories.</p>
+                            <button class="mt-auto bg-white text-indigo-600 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">
+                                View Photos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 2 -->
+                <div class="flip-card h-96">
+                    <div class="flip-card-inner h-full rounded-xl shadow-lg">
+                        <div class="flip-card-front h-full bg-white rounded-xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="School trip" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                                <h3 class="text-xl font-bold text-white">Senior Trip</h3>
+                                <p class="text-gray-200">April 10-12, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back h-full bg-purple-600 text-white rounded-xl p-6 flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-4">Senior Trip</h3>
+                            <p class="mb-4">Three days of adventure, bonding, and creating memories that will last a lifetime.</p>
+                            <button class="mt-auto bg-white text-purple-600 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">
+                                View Photos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 3 -->
+                <div class="flip-card h-96">
+                    <div class="flip-card-inner h-full rounded-xl shadow-lg">
+                        <div class="flip-card-front h-full bg-white rounded-xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="School festival" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                                <h3 class="text-xl font-bold text-white">Spring Festival</h3>
+                                <p class="text-gray-200">March 15, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back h-full bg-pink-600 text-white rounded-xl p-6 flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-4">Spring Festival</h3>
+                            <p class="mb-4">Music, food, and fun as we celebrated our last spring together as a class.</p>
+                            <button class="mt-auto bg-white text-pink-600 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">
+                                View Photos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 shadow-lg">
+                    View All Memories
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classmates Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Meet Your Classmates</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Browse through profiles of your fellow graduates and reconnect</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <!-- Classmate cards will be populated by JavaScript -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-indigo-600 hover:text-white transition duration-300">
+                    View All Classmates
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax py-32 relative" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Leave Your Mark</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Sign your virtual yearbook and leave messages for your classmates to cherish forever.</p>
+            <button class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg glow">
+                Sign Yearbook Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Journey Timeline</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Relive the key moments from our time together</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="hidden md:block absolute left-1/2 h-full w-1 bg-indigo-200 transform -translate-x-1/2"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative timeline-item">
+                        <div class="md:flex items-center w-full">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 text-right">
+                                <div class="bg-white p-6 rounded-xl shadow-lg yearbook-card">
+                                    <h3 class="text-xl font-bold text-indigo-600 mb-2">First Day of School</h3>
+                                    <p class="text-gray-600 mb-2">September 5, 2021</p>
+                                    <p class="text-gray-700">The beginning of our journey together. Nervous excitement filled the air as we met our new classmates.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:w-1/2"></div>
+                        </div>
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-indigo-600 w-6 h-6 rounded-full border-4 border-white shadow-lg"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 2 -->
+                    <div class="relative timeline-item">
+                        <div class="md:flex items-center w-full">
+                            <div class="hidden md:block md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg yearbook-card">
+                                    <h3 class="text-xl font-bold text-purple-600 mb-2">First School Trip</h3>
+                                    <p class="text-gray-600 mb-2">October 15, 2021</p>
+                                    <p class="text-gray-700">Our first bonding experience outside the classroom. The trip where lifelong friendships began to form.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-600 w-6 h-6 rounded-full border-4 border-white shadow-lg"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="relative timeline-item">
+                        <div class="md:flex items-center w-full">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 text-right">
+                                <div class="bg-white p-6 rounded-xl shadow-lg yearbook-card">
+                                    <h3 class="text-xl font-bold text-pink-600 mb-2">Championship Win</h3>
+                                    <p class="text-gray-600 mb-2">March 20, 2023</p>
+                                    <p class="text-gray-700">Our basketball team brought home the trophy after an intense season. The whole school celebrated together.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:w-1/2"></div>
+                        </div>
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-pink-600 w-6 h-6 rounded-full border-4 border-white shadow-lg"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="relative timeline-item">
+                        <div class="md:flex items-center w-full">
+                            <div class="hidden md:block md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg yearbook-card">
+                                    <h3 class="text-xl font-bold text-blue-600 mb-2">Senior Prom</h3>
+                                    <p class="text-gray-600 mb-2">May 10, 2025</p>
+                                    <p class="text-gray-700">A night to remember under the stars. Dressed to impress, we danced the night away.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 w-6 h-6 rounded-full border-4 border-white shadow-lg"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 5 -->
+                    <div class="relative timeline-item">
+                        <div class="md:flex items-center w-full">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 text-right">
+                                <div class="bg-white p-6 rounded-xl shadow-lg yearbook-card">
+                                    <h3 class="text-xl font-bold text-green-600 mb-2">Graduation Day</h3>
+                                    <p class="text-gray-600 mb-2">May 25, 2025</p>
+                                    <p class="text-gray-700">The culmination of our journey. Caps thrown in the air as we celebrated our achievements together.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:w-1/2"></div>
+                        </div>
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-600 w-6 h-6 rounded-full border-4 border-white shadow-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-indigo-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Classmates Say</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">Hear from your friends about their yearbook experience</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-indigo-200">Class President</p>
+                        </div>
+                    </div>
+                    <p class="italic">"This yearbook captures our journey perfectly. The interactive features make it so much more than just photos - it's a living memory of our time together."</p>
+                    <div class="flex mt-4 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-indigo-200">Valedictorian</p>
+                        </div>
+                    </div>
+                    <p class="italic">"I love being able to revisit our memories anytime. The digital format means I'll never lose this precious keepsake."</p>
+                    <div class="flex mt-4 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-filter backdrop-blur-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Martinez" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Jessica Martinez</h4>
+                            <p class="text-indigo-200">Cheer Captain</p>
+                        </div>
+                    </div>
+                    <p class="italic">"The flipbook feature is amazing! It feels just like holding a physical yearbook, but with so many more interactive elements."</p>
+                    <div class="flex mt-4 text-yellow-300">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Ready to Relive Your Memories?</h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">Join your classmates in preserving the moments that made 2025 unforgettable.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 shadow-lg">
+                    Explore Yearbook
+                </button>
+                <button class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-indigo-600 hover:text-white transition duration-300">
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-book-open text-indigo-400 mr-2"></i>
+                        Yearbook 2025
+                    </h3>
+                    <p class="text-gray-400">Preserving our memories, celebrating our journey, connecting our futures.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Gallery</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Classmates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Memories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates and reunion announcements.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full">
+                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Yearbook 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Typing effect
+        const typingText = document.getElementById('typing-text');
+        const phrases = ["Our Story", "Our Journey", "Our Memories", "Yearbook 2025"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isEnd = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isEnd = true;
+                setTimeout(() => {
+                    isDeleting = true;
+                }, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            const speed = isDeleting ? 100 : isEnd ? 100 : 200;
+            setTimeout(type, speed);
+            
+            if (isEnd) isEnd = false;
+        }
+
+        // Start typing effect
+        setTimeout(type, 1000);
+
+        // Counter animation
+        function animateCounters() {
+            const students = document.getElementById('students-count');
+            const photos = document.getElementById('photos-count');
+            const events = document.getElementById('events-count');
+            const messages = document.getElementById('messages-count');
+            
+            const targetStudents = 342;
+            const targetPhotos = 1247;
+            const targetEvents = 28;
+            const targetMessages = 568;
+            
+            let countStudents = 0;
+            let countPhotos = 0;
+            let countEvents = 0;
+            let countMessages = 0;
+            
+            const speed = 50;
+            
+            const studentsInterval = setInterval(() => {
+                countStudents += 5;
+                students.textContent = countStudents;
+                if (countStudents >= targetStudents) {
+                    students.textContent = targetStudents;
+                    clearInterval(studentsInterval);
+                }
+            }, speed);
+            
+            const photosInterval = setInterval(() => {
+                countPhotos += 20;
+                photos.textContent = countPhotos;
+                if (countPhotos >= targetPhotos) {
+                    photos.textContent = targetPhotos;
+                    clearInterval(photosInterval);
+                }
+            }, speed);
+            
+            const eventsInterval = setInterval(() => {
+                countEvents += 1;
+                events.textContent = countEvents;
+                if (countEvents >= targetEvents) {
+                    events.textContent = targetEvents;
+                    clearInterval(eventsInterval);
+                }
+            }, speed);
+            
+            const messagesInterval = setInterval(() => {
+                countMessages += 10;
+                messages.textContent = countMessages;
+                if (countMessages >= targetMessages) {
+                    messages.textContent = targetMessages;
+                    clearInterval(messagesInterval);
+                }
+            }, speed);
+        }
+
+        // Run counter animation when stats section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.bg-white');
+        observer.observe(statsSection);
+
+        // Populate classmates
+        const classmates = [
+            { name: "Alex Johnson", role: "Football Captain", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+            { name: "Sarah Williams", role: "Drama Club", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+            { name: "Michael Brown", role: "Science Olympiad", img: "https://randomuser.me/api/portraits/men/22.jpg" },
+            { name: "Emily Davis", role: "Cheerleader", img: "https://randomuser.me/api/portraits/women/33.jpg" },
+            { name: "David Wilson", role: "Debate Team", img: "https://randomuser.me/api/portraits/men/45.jpg" },
+            { name: "Jessica Garcia", role: "Student Council", img: "https://randomuser.me/api/portraits/women/55.jpg" },
+            { name: "Daniel Martinez", role: "Band", img: "https://randomuser.me/api/portraits/men/66.jpg" },
+            { name: "Olivia Anderson", role: "Art Club", img: "https://randomuser.me/api/portraits/women/77.jpg" },
+            { name: "James Taylor", role: "Robotics", img: "https://randomuser.me/api/portraits/men/88.jpg" },
+            { name: "Sophia Thomas", role: "Yearbook Editor", img: "https://randomuser.me/api/portraits/women/99.jpg" }
+        ];
+
+        const classmatesContainer = document.querySelector('.grid.grid-cols-2');
+        
+        classmates.forEach(classmate => {
+            const classmateCard = document.createElement('div');
+            classmateCard.className = 'bg-white rounded-xl shadow-lg overflow-hidden yearbook-card';
+            classmateCard.innerHTML = `
+                <img src="${classmate.img}" alt="${classmate.name}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">${classmate.name}</h3>
+                    <p class="text-gray-600 text-sm">${classmate.role}</p>
+                    <button class="mt-3 bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-indigo-200 transition duration-300">
+                        View Profile
+                    </button>
+                </div>
+            `;
+            classmatesContainer.appendChild(classmateCard);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to timeline items when they come into view
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            timelineObserver.observe(item);
+        });
+    </script>
+</body>
+</html>
